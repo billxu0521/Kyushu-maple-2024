@@ -1,0 +1,1 @@
+export { default } from "file:///Users/billxu/project/Kyushu-maple-2024/node_modules/@nuxt/vite-builder/dist/runtime/vite-node.mjs"
