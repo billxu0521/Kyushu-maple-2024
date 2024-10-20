@@ -7,7 +7,7 @@
 // eslint-disable-next-line no-undef
 export default defineNuxtConfig({
   preset: 'node-server',
-
+  target: 'static', // or 'server'
   modules: [
     '@nuxtjs/tailwindcss',
     'nuxt-headlessui',
