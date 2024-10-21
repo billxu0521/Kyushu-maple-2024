@@ -161,13 +161,13 @@ export default {
         title: "Grids Premium Hotel Kumamoto",
         detail: "第三天(11/26)住宿：熊本市 Grids Premium Hotel Kumamoto",
         link: "",
-        location: { lat: 32.820126139846025, lng: 130.7595361458797 },
+        location: { lat: 32.80473517945612, lng: 130.71581167309125 },
       },
       {
         title: "Hotel Route Inn Hita Ekimae",
         detail: "第四天(11/27)住宿：日田市 Hotel Route Inn Hita Ekimae",
         link: "",
-        location: { lat: 33.3227458121253, lng: 130.94090493896823 },
+        location: { lat: 33.31704877102474, lng: 130.93886567569893 },
       },
       {
         title: "Hotel Route Inn Hita Ekimae",
