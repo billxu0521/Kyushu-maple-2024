@@ -20,6 +20,10 @@
 
         <Polyline :options="day1PlanPath" />
         <Polyline :options="day2PlanPath" />
+        <Polyline :options="day3PlanPath" />
+        <Polyline :options="day4PlanPath" />
+        <Polyline :options="day5PlanPath" />
+        <Polyline :options="day6PlanPath" />
       </GoogleMap>
     </div>
     <div class="flex justify-center">
@@ -35,8 +39,9 @@ import { useHead } from "#app";
 import { definePageMeta } from "#imports";
 import GenericPanel from "~/components/commons/GenericPanel";
 import ogBanner from "../assets/images/nuxtwind-daisy-og-banner.jpg";
+import pathJson from "../data/path.json";
 
-// 确保正确导入 GoogleMap 组件
+// 保正确导入 GoogleMap 组件
 import {
   GoogleMap,
   Marker,
@@ -54,7 +59,7 @@ export default {
     Polyline,
     CustomMarker,
     MarkerCluster,
-    AdvancedMarker
+    AdvancedMarker,
   },
   setup() {
     definePageMeta({
@@ -62,7 +67,7 @@ export default {
     });
 
     useHead({
-      title: "Nuxtwind Daisy 🟢💨🌼",
+      title: "徐家2024 九州楓葉之旅",
       description:
         "Nuxtwind Daisy is a starter template for Nuxt.js 3 + Tailwind CSS + Daisy UI with additional installed setup for custom font, icons, animation, and more.",
       link: [{ rel: "icon", type: "image/png", href: "/favicon.png" }],
@@ -76,65 +81,63 @@ export default {
       ],
     });
     const center = { lat: 33.59093532676841, lng: 130.3955431693077 };
-
+    console.log(pathJson);
     //路線圖
-    const day1PlanPoint = [
-      { lat: 33.58696211652374, lng: 130.453078254138 },
-      { lat: 33.564263456636844, lng: 130.46260275666194 },
-      { lat: 33.467387382133474, lng: 130.54594242420583},
-      { lat: 33.4257333987401, lng: 130.6525022854957},
-      { lat: 33.46537678202498, lng: 130.69586528563653 }, //秋月
-      { lat: 33.4257333987401, lng: 130.6525022854957},
-      { lat: 33.467387382133474, lng: 130.54594242420583},
-      { lat: 33.564263456636844, lng: 130.46260275666194 },
-      { lat: 33.585593875822916, lng: 130.42685632052448 }
-    ];
+    const day1PlanPoint = pathJson.day1;
     const day1PlanPath = {
       path: day1PlanPoint,
       geodesic: true,
-      strokeColor: "#FF0000",
+      strokeColor: "#D200D2", // 深橙色
       strokeOpacity: 1.0,
       strokeWeight: 2,
     };
 
-    const day2PlanPoint = [
-    
-      { lat: 33.585593875822916, lng: 130.42685632052448 }, //飯店
-      { lat: 33.574096615046976, lng: 130.26103895271322 },
-      { lat: 33.539162904591514, lng: 130.19828331393444 },
-      { lat: 33.48944211328074, lng: 130.06792630314618 },
-      { lat: 33.447356375940686, lng: 130.04922020099465 },
-
-      { lat: 33.44476799333162 , lng: 129.99305628768926 },//鏡山
-      { lat: 33.404720959572906, lng: 129.97545999215032 },
-      { lat: 33.35363377013039, lng: 130.00533226617927 },
-      { lat: 33.3128345718404, lng: 130.06834649880918},
-
-      { lat: 33.310307047875, lng: 130.07227472789086}, //休息站 嚴木
-      { lat: 33.34866654003284, lng: 130.0768097447885}, //環境藝術之森
-      { lat: 33.310307047875, lng: 130.07227472789086}, //休息站 嚴木
-      { lat: 33.28940791758127, lng: 130.09334688743755},
-      { lat: 33.26815833730932, lng: 130.0906754340945},
-      { lat: 33.20879356186168, lng: 130.04710212626023},
-      { lat: 33.18153464034397, lng: 130.0172002360942 },//御船山樂園
-      { lat: 33.13317859627453, lng: 129.9885973789881 },
-      { lat: 33.09319898519443, lng: 129.97705766535907 },
-      { lat: 33.036426147954636, lng: 129.92136618277402 },
-      { lat: 33.01485725533513, lng: 129.94528915095447 },
-      { lat: 32.889315981048476, lng: 129.98788741915942 },
-      { lat: 32.88047553729258, lng: 130.0192139443904 },
-      
-      { lat: 32.84882316005601, lng: 130.04184430088665 }, //諫早市 新車站飯店 Premier
-
-    ];
+    const day2PlanPoint = pathJson.day2;
     const day2PlanPath = {
       path: day2PlanPoint,
       geodesic: true,
-      strokeColor: "#019858",
+      strokeColor: "#C0392B", // 深红色
       strokeOpacity: 1.0,
       strokeWeight: 2,
     };
 
+    const day3PlanPoint = pathJson.day3;
+    const day3PlanPath = {
+      path: day3PlanPoint,
+      geodesic: true,
+      strokeColor: "#7D6608", // 深黄褐色
+      strokeOpacity: 1.0,
+      strokeWeight: 2,
+    };
+
+    const day4PlanPoint =  pathJson.day4;
+    const day4PlanPath = {
+      path: day4PlanPoint,
+      geodesic: true,
+      strokeColor: "#6E2C00", // 深棕色
+      strokeOpacity: 1.0,
+      strokeWeight: 2,
+    };
+
+    const day5PlanPoint = pathJson.day5;
+
+    const day5PlanPath = {
+      path: day5PlanPoint,
+      geodesic: true,
+      strokeColor: "#884EA0", // 深紫色
+      strokeOpacity: 1.0,
+      strokeWeight: 2,
+    };
+
+    const day6PlanPoint = pathJson.day6;
+
+    const day6PlanPath = {
+      path: day6PlanPoint,
+      geodesic: true,
+      strokeColor: "#1E8449", // 深绿色
+      strokeOpacity: 1.0,
+      strokeWeight: 2,
+    };
 
     const getInformation = (item) => {
       currentItemDetail.value = item.detail;
@@ -172,7 +175,6 @@ export default {
         link: "",
         location: { lat: 33.94714919912043, lng: 130.9633431445823 },
       },
-      
     ];
 
     const currentItemDetail = ref(null);
@@ -185,7 +187,11 @@ export default {
       currentItemDetail,
       hotelPinOptions,
       day1PlanPath,
-      day2PlanPath
+      day2PlanPath,
+      day3PlanPath,
+      day4PlanPath,
+      day5PlanPath,
+      day6PlanPath
     };
   },
 };
@@ -193,3 +199,4 @@ export default {
 
 <style scoped>
 </style>
+
