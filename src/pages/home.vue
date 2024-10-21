@@ -3,7 +3,7 @@
     <div class="flex flex-col justify-center">
       <GoogleMap
         api-key="AIzaSyCk_EITNYIKsTbVsxVS44--YnrOyUD66MI"
-        style="width: 100%; height: 600px"
+        style="width: 100%; height: 500px"
         :center="center"
         mapId="b28f57e06bac8f91"
         :zoom="8"
@@ -27,8 +27,22 @@
       </GoogleMap>
     </div>
     <div class="flex justify-center">
-      <GenericPanel>
-        {{ currentItemDetail }}
+      <GenericPanel >
+        <div v-if="currentItem" class="card bg-base-100 w-96 shadow-xl">
+          <div class="card-body">
+            <h2 class="card-title">{{currentItem?.title}}</h2>
+            <p v-html="currentItem?.detail"></p>
+            <div class="card-actions justify-center pt-3">
+              <a class="btn btn-primary" :href="currentItem?.link" target="_blank">相關連結</a>
+            </div>
+          </div>
+          <figure class="px-10 pb-10">
+            <img
+              :src="currentItem?.image"
+              alt="Shoes"
+              class="rounded-xl" />
+          </figure>
+        </div>
       </GenericPanel>
     </div>
   </div>
@@ -40,6 +54,7 @@ import { definePageMeta } from "#imports";
 import GenericPanel from "~/components/commons/GenericPanel";
 import ogBanner from "../assets/images/nuxtwind-daisy-og-banner.jpg";
 import pathJson from "../data/path.json";
+import hotelsJson from "../data/hotels.json";
 
 // 保正确导入 GoogleMap 组件
 import {
@@ -140,51 +155,20 @@ export default {
     };
 
     const getInformation = (item) => {
-      currentItemDetail.value = item.detail;
+      currentItem.value = item;
     };
 
     //九州飯店資料
-    const hotels = [
-      {
-        title: "博多WBF格蘭德飯店",
-        detail: "第一天(11/24)住宿：福岡市 博多 WBF格蘭德飯店",
-        link: "",
-        location: { lat: 33.585593875822916, lng: 130.42685632052448 },
-      },
-      {
-        title: "新車站飯店 Premier",
-        detail: "第二天(11/25)住宿：諫早市 新車站飯店 Premier",
-        link: "",
-        location: { lat: 32.84882316005601, lng: 130.04184430088665 },
-      },
-      {
-        title: "Grids Premium Hotel Kumamoto",
-        detail: "第三天(11/26)住宿：熊本市 Grids Premium Hotel Kumamoto",
-        link: "",
-        location: { lat: 32.80473517945612, lng: 130.71581167309125 },
-      },
-      {
-        title: "Hotel Route Inn Hita Ekimae",
-        detail: "第四天(11/27)住宿：日田市 Hotel Route Inn Hita Ekimae",
-        link: "",
-        location: { lat: 33.31704877102474, lng: 130.93886567569893 },
-      },
-      {
-        title: "Hotel Route Inn Hita Ekimae",
-        detail: "第五天(11/28)住宿：門司港 普樂美雅酒店",
-        link: "",
-        location: { lat: 33.94714919912043, lng: 130.9633431445823 },
-      },
-    ];
+    const hotels = hotelsJson.hotels;
 
-    const currentItemDetail = ref(null);
+    const currentItem= ref(null);
     const hotelPinOptions = { background: "#FBBC04" };
 
     return {
       center,
       getInformation,
       hotels,
-      currentItemDetail,
+      currentItem,
       hotelPinOptions,
       day1PlanPath,
       day2PlanPath,
@@ -199,4 +183,3 @@ export default {
 
 <style scoped>
 </style>
-

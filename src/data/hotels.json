@@ -1,0 +1,44 @@
+{
+    "hotels": [
+        {   
+            "type": "hotel",
+            "title": "博多WBF格蘭德飯店",
+            "detail": "第一天(11/24)<br>住宿<br>福岡市 博多 WBF格蘭德飯店",
+            "image": "https://lh5.googleusercontent.com/p/AF1QipOOr6Qn0dFDDTdWLZtzhcOGpUax1rAvZeL_sxcT=w243-h244-n-k-no-nu",
+            "link": "https://www.hotelwbf.com/grande-hakata/?utm_source=google&utm_medium=mybusiness",
+            "location": { "lat": 33.585593875822916, "lng": 130.42685632052448 }
+        },
+        {
+            "type": "hotel",
+            "title": "新車站飯店 Premier",
+            "detail": "第二天(11/25)<br>住宿<br>諫早市 新車站飯店 Premier",
+            "image": "https://lh3.googleusercontent.com/p/AF1QipMnMZns-5DO5jA_vUAHqBhKWSVzLrT_bHzKWSvg=s680-w680-h510",
+            "link": "http://www.jisco-group.net/nsh-p/",
+            "location": { "lat": 32.84882316005601, "lng": 130.04184430088665 }
+        },
+        {
+            "type": "hotel",
+            "title": "Grids Premium Hotel Kumamoto",
+            "detail": "第三天(11/26)<br>住宿<br>熊本市 Grids Premium Hotel Kumamoto",
+            "image": "https://lh3.googleusercontent.com/p/AF1QipNHo7vZMMd0ERvGW4vDIW5YO9MDTAjpKLaN46pI=s1360-w1360-h1020",
+            "link": "https://gridshotel.com/kumamoto/tw/",
+            "location": { "lat": 32.80473517945612, "lng": 130.71581167309125 }
+        },
+        {
+            "type": "hotel",
+            "title": "Hotel Route Inn Hita Ekimae",
+            "detail": "第四天(11/27)<br>住宿<br>日田市 Hotel Route Inn Hita Ekimae",
+            "image": "https://lh3.googleusercontent.com/p/AF1QipM084Qe6ke6kxaxH66mhx882HUAZomKR7s5_pEB=s680-w680-h510",
+            "link": "https://www.route-inn.co.jp/hotel_list/oita/index_hotel_id_640/?utm_source=google&utm_medium=gbp&utm_campaign=web",
+            "location": { "lat": 33.31704877102474, "lng": 130.93886567569893 }
+        },
+        {
+            "type": "hotel",
+            "title": "門司港 普樂美雅酒店",
+            "detail": "第五天(11/28)<br>住宿<br>門司港 普樂美雅酒店",
+            "image": "https://lh3.googleusercontent.com/p/AF1QipNznXoNUcY1JTjMQErhvXueT1yn2zW2CPyYV1A=s680-w680-h510",
+            "link": "https://premier.kenhotels.com/mojiko/",
+            "location": { "lat": 33.94714919912043, "lng": 130.9633431445823 }
+        }
+    ]
+}
