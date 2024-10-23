@@ -1,6 +1,7 @@
 {
     "hotels": [
         {   
+            "day": 1,
             "type": "hotel",
             "title": "博多WBF格蘭德飯店",
             "detail": "第一天(11/24)<br>住宿<br>福岡市 博多 WBF格蘭德飯店",
@@ -9,6 +10,7 @@
             "location": { "lat": 33.585593875822916, "lng": 130.42685632052448 }
         },
         {
+            "day": 2,
             "type": "hotel",
             "title": "新車站飯店 Premier",
             "detail": "第二天(11/25)<br>住宿<br>諫早市 新車站飯店 Premier",
@@ -17,6 +19,7 @@
             "location": { "lat": 32.84882316005601, "lng": 130.04184430088665 }
         },
         {
+            "day": 3,
             "type": "hotel",
             "title": "Grids Premium Hotel Kumamoto",
             "detail": "第三天(11/26)<br>住宿<br>熊本市 Grids Premium Hotel Kumamoto",
@@ -25,6 +28,7 @@
             "location": { "lat": 32.80473517945612, "lng": 130.71581167309125 }
         },
         {
+            "day": 4,
             "type": "hotel",
             "title": "Hotel Route Inn Hita Ekimae",
             "detail": "第四天(11/27)<br>住宿<br>日田市 Hotel Route Inn Hita Ekimae",
@@ -33,6 +37,7 @@
             "location": { "lat": 33.31704877102474, "lng": 130.93886567569893 }
         },
         {
+            "day": 5,
             "type": "hotel",
             "title": "門司港 普樂美雅酒店",
             "detail": "第五天(11/28)<br>住宿<br>門司港 普樂美雅酒店",
