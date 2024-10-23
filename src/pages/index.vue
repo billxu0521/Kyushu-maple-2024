@@ -245,7 +245,7 @@ const currentDay = ref(0);
           <div class="card-body">
             <h2 class="card-title">{{currentItem?.title}}</h2>
             <p v-html="currentItem?.detail"></p>
-            <div class="card-actions justify-center pt-3">
+            <div class="card-actions justify-center pt-3" v-if="currentItem?.link">
               <a class="btn btn-primary" :href="currentItem?.link" target="_blank">相關連結</a>
             </div>
           </div>
