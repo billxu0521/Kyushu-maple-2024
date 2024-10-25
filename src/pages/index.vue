@@ -90,7 +90,10 @@ const day6PlanPath = ref({
 });
 
 const getInformation = (item) => {
+  
   currentItem.value = item;
+  console.log(currentItem.value.title);
+  console.log(item.title);
   if(currentItem.value.day){
     currentDay.value = item.day;
   }else{
@@ -142,6 +145,8 @@ const getOriginalColor = (day) => {
 };
 
 const currentDay = ref(0);
+
+
 </script>
 
 <template>
@@ -153,24 +158,37 @@ const currentDay = ref(0);
         :center="center"
         mapId="b28f57e06bac8f91"
         :zoom="8"
+        :streetViewControl= "false"
       >
         <MarkerCluster>
-          <AdvancedMarker
+          <CustomMarker
             v-for="(hotel, i) in hotels"
             :key="i"
             :options="{ position: hotel.location }"
             @click="getInformation(hotel)"
             :pin-options="hotelPinOptions"
-          />
+          >
+          <div  class="bg-[#FBBC04] rounded-md" style="text-align: center ">
+            <i class="text-2xl la la-hotel text-white"></i>
+          </div>
+        </CustomMarker>
         </MarkerCluster>
         <MarkerCluster>
-          <AdvancedMarker
+          <CustomMarker
             v-for="(location, i) in locations"
             :key="i"
+            
             :options="{ position: location.location }"
             @click="getInformation(location)"
             :pin-options="locationPinOptions"
-          />
+          >
+          <div v-if="location.type === '觀賞楓葉'" :class="location?.title === currentItem?.title ? 'focus' : ''" class="bg-[#BB5E00] rounded-md" style="text-align: center ">
+            <i  class="text-2xl text-white lab la-canadian-maple-leaf"></i>
+          </div>  
+          <div v-else :class="location?.title === currentItem?.title ? 'focus' : ''" class="bg-[#4285F4] rounded-md" style="text-align: center ">
+            <i  class="text-2xl las la-camera text-white"></i>
+          </div>  
+        </CustomMarker>
         </MarkerCluster>
 
         <Polyline :options="day1PlanPath" @click="highlightPath('day1')"/>
@@ -244,9 +262,13 @@ const currentDay = ref(0);
          
           <div class="card-body">
             <h2 class="card-title">{{currentItem?.title}}</h2>
+            <div class="badge badge-secondary text-white">{{ currentItem.type }}</div>
             <p v-html="currentItem?.detail"></p>
             <div class="card-actions justify-center pt-3" v-if="currentItem?.link">
               <a class="btn btn-primary" :href="currentItem?.link" target="_blank">相關連結</a>
+            </div>
+            <div class="card-actions justify-center pt-3" v-if="currentItem?.type == '景點' ||currentItem?.type == '觀賞楓葉'">
+              <a class="btn btn-primary text-white" :href="`http://google.com/search?q=${currentItem.title}`" target="_blank">查詢這個景點！</a>
             </div>
           </div>
           <figure class="px-10 pb-10">
@@ -266,10 +288,57 @@ const currentDay = ref(0);
           
          
         </div>
+        <hr>
+        <div class="collapse collapse-arrow bg-base-100 mb-4">
+          <input type="checkbox" />
+           <div class="collapse-title text-xl font-medium text-center">景點列表</div>
+          <div class="collapse-content">
+
+            <div class="overflow-x-auto">
+              <table class="table">
+                <!-- head -->
+                <thead>
+                  <tr >
+                    <th>景點名稱</th>
+                    <th>類別</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <template v-for="(location, i) in locations"
+                  :key="i">
+                  <tr @click="getInformation(location)">
+                    <th>{{ location.title }}</th>
+                    <th>{{ location.type }}</th>
+                  
+                  </tr>
+                  </template>
+                  
+                </tbody>
+              </table>
+            </div>
+
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <style scoped>
+.focus {
+  animation: pulse 2s infinite;
+  border: 1px solid #000000;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
 </style>

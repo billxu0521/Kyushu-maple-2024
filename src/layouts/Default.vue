@@ -10,7 +10,7 @@
       
     </div>
     <slot />
-    <footer class="footer footer-center ">
+    <footer class="footer footer-center mt-4">
       <div>
         
        
