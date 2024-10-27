@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 import { useHead } from "#app";
 import { definePageMeta } from "#imports";
 import GenericPanel from "~/components/commons/GenericPanel";
@@ -23,7 +23,7 @@ definePageMeta({
 });
 
 useHead({
-  title: "徐家2024 九州楓葉之旅",
+  title: "2024 九州楓葉之旅",
   description:
     "Nuxtwind Daisy is a starter template for Nuxt.js 3 + Tailwind CSS + Daisy UI with additional installed setup for custom font, icons, animation, and more.",
   link: [{ rel: "icon", type: "image/png", href: "/favicon.png" }],
@@ -92,8 +92,18 @@ const day6PlanPath = ref({
 const getInformation = (item) => {
   
   currentItem.value = item;
-  console.log(currentItem.value.title);
-  console.log(item.title);
+  if(currentItem.value.day){
+    currentDay.value = item.day;
+  }else{
+    currentDay.value = 0;
+  }
+  
+};
+
+const getTableInformation = (item) => {
+  
+  currentItem.value = item;
+  scrollToTop();
   if(currentItem.value.day){
     currentDay.value = item.day;
   }else{
@@ -146,6 +156,23 @@ const getOriginalColor = (day) => {
 
 const currentDay = ref(0);
 
+// 添加这个函数来处理滚动到顶部的操作
+const scrollToTop = () => {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth'
+  });
+};
+
+// 添加一个新的 ref 来跟踪数据是否加载完成
+const dataLoaded = ref(false);
+
+// 在数据加载完成后设置 dataLoaded 为 true
+onMounted(async () => {
+  // 假设您有一些异步操作来加载数据
+  // await loadData();
+  dataLoaded.value = true;
+});
 
 </script>
 
@@ -160,36 +187,48 @@ const currentDay = ref(0);
         :zoom="8"
         :streetViewControl= "false"
       >
-        <MarkerCluster>
-          <CustomMarker
-            v-for="(hotel, i) in hotels"
-            :key="i"
-            :options="{ position: hotel.location }"
-            @click="getInformation(hotel)"
-            :pin-options="hotelPinOptions"
-          >
-          <div  class="bg-[#FBBC04] rounded-md" style="text-align: center ">
-            <i class="text-2xl la la-hotel text-white"></i>
-          </div>
-        </CustomMarker>
-        </MarkerCluster>
-        <MarkerCluster>
-          <CustomMarker
-            v-for="(location, i) in locations"
-            :key="i"
-            
-            :options="{ position: location.location }"
-            @click="getInformation(location)"
-            :pin-options="locationPinOptions"
-          >
-          <div v-if="location.type === '觀賞楓葉'" :class="location?.title === currentItem?.title ? 'focus' : ''" class="bg-[#BB5E00] rounded-md" style="text-align: center ">
-            <i  class="text-2xl text-white lab la-canadian-maple-leaf"></i>
-          </div>  
-          <div v-else :class="location?.title === currentItem?.title ? 'focus' : ''" class="bg-[#4285F4] rounded-md" style="text-align: center ">
-            <i  class="text-2xl las la-camera text-white"></i>
-          </div>  
-        </CustomMarker>
-        </MarkerCluster>
+        <!-- 使用 v-if 控制 MarkerCluster 的渲染 -->
+        <template v-if="dataLoaded">
+          <MarkerCluster>
+            <CustomMarker
+              v-for="(hotel, i) in hotels"
+              :key="i"
+              :options="{ position: hotel.location }"
+              @click="getInformation(hotel)"
+              :pin-options="hotelPinOptions"
+            >
+              <div class="bg-[#FBBC04] rounded-md" style="text-align: center">
+                <i class="text-2xl la la-hotel text-white"></i>
+              </div>
+            </CustomMarker>
+          </MarkerCluster>
+          <MarkerCluster>
+            <CustomMarker
+              v-for="(location, i) in locations"
+              :key="i"
+              :options="{ position: location.location }"
+              @click="getInformation(location)"
+              :pin-options="locationPinOptions"
+            >
+              <div
+                v-if="location.type === '觀賞楓葉'"
+                :class="location?.title === currentItem?.title ? 'focus' : ''"
+                class="bg-[#BB5E00] p-1 rounded-md"
+                style="text-align: center"
+              >
+                <i class="text-2xl text-white lab la-canadian-maple-leaf"></i>
+              </div>
+              <div
+                v-else
+                :class="location?.title === currentItem?.title ? 'focus' : ''"
+                class="bg-[#4285F4] p-1 rounded-md"
+                style="text-align: center"
+              >
+                <i class="text-2xl las la-camera text-white"></i>
+              </div>
+            </CustomMarker>
+          </MarkerCluster>
+        </template>
 
         <Polyline :options="day1PlanPath" @click="highlightPath('day1')"/>
         <Polyline :options="day2PlanPath" @click="highlightPath('day2')"/>
@@ -271,7 +310,7 @@ const currentDay = ref(0);
               <a class="btn btn-primary text-white" :href="`http://google.com/search?q=${currentItem.title}`" target="_blank">查詢這個景點！</a>
             </div>
           </div>
-          <figure class="px-10 pb-10">
+          <figure class="px-5 pb-5">
             <img
               v-if="currentItem?.image"
               :src="currentItem?.image"
@@ -289,25 +328,27 @@ const currentDay = ref(0);
          
         </div>
         <hr>
-        <div class="collapse collapse-arrow bg-base-100 mb-4">
+        <div class="collapse collapse-arrow bg-base-100 mb-4  w-1/2  m-auto">
           <input type="checkbox" />
-           <div class="collapse-title text-xl font-medium text-center">景點列表</div>
+           <div class="collapse-title text-xl font-medium border border-5 text-center">景點列表(點擊觀看所有景點)</div>
           <div class="collapse-content">
 
             <div class="overflow-x-auto">
-              <table class="table">
+              <table class="table ">
                 <!-- head -->
                 <thead>
                   <tr >
                     <th>景點名稱</th>
+                    <th></th>
                     <th>類別</th>
                   </tr>
                 </thead>
                 <tbody>
                   <template v-for="(location, i) in locations"
                   :key="i">
-                  <tr @click="getInformation(location)">
+                  <tr >
                     <th>{{ location.title }}</th>
+                    <th><button class="btn " @click="getTableInformation(location)">點擊觀看資訊</button></th>
                     <th>{{ location.type }}</th>
                   
                   </tr>
@@ -331,7 +372,7 @@ const currentDay = ref(0);
 }
 
 @keyframes pulse {
-  0% {
+   0% {
     transform: scale(1);
   }
   50% {
@@ -341,4 +382,19 @@ const currentDay = ref(0);
     transform: scale(1);
   }
 }
+
+/* 可以添加一些过渡效果,使按钮更平滑地出现 */
+.btn-circle {
+  transition: opacity 0.3s ease-in-out;
+}
+
+/* 当页面滚动到一定距离时显示按钮,可以通过JavaScript控制 */
+.btn-circle.show {
+  opacity: 1;
+}
+
+.btn-circle.hide {
+  opacity: 0;
+}
 </style>
+

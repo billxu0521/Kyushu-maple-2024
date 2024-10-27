@@ -2,7 +2,7 @@
   <div :data-theme="theme">
     <div class="navbar fixed bg-base-100 z-40 shadow-sm">
       <div class="navbar-start">
-        <a class="btn btn-ghost md:text-xl">北九州楓葉之旅</a>
+        <a class="btn btn-ghost md:text-xl">北九州楓葉之旅 ｜ 景點資料僅供參考，視當時狀況有所調整</a>
       </div>
       <div class="navbar-center hidden lg:flex">
         <!-- TODO: You can add menu here -->
