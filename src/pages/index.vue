@@ -328,7 +328,7 @@ onMounted(async () => {
          
         </div>
         <hr>
-        <div class="collapse collapse-arrow bg-base-100 mb-4  w-1/2  m-auto">
+        <div class="collapse collapse-arrow bg-base-100 mb-4  w-full xl:w-1/2  m-auto">
           <input type="checkbox" />
            <div class="collapse-title text-xl font-medium border border-5 text-center">景點列表(點擊觀看所有景點)</div>
           <div class="collapse-content">
